@@ -65,3 +65,8 @@ ifdef CONFIG_SIMD_AVX
 CFLAGS		+= -mavx
 CXXFLAGS	+= -mavx
 endif
+
+ifdef CONFIG_SIMD_AVX2
+CFLAGS		+= -mavx2
+CXXFLAGS	+= -mavx2
+endif

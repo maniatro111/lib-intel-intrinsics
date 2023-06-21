@@ -1,102 +1,53 @@
-/*===---- popcntintrin.h - POPCNT intrinsics -------------------------------===
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- *===-----------------------------------------------------------------------===
- */
+/* Copyright (C) 2009-2021 Free Software Foundation, Inc.
 
-#ifndef __POPCNTINTRIN_H
-#define __POPCNTINTRIN_H
+   This file is part of GCC.
 
-/* Define the default attributes for the functions in this file. */
-#ifdef __GNUC__
-#define __DEFAULT_FN_ATTRS __attribute__((__gnu_inline__, __always_inline__, __artificial__))
-#else
-#define __DEFAULT_FN_ATTRS __attribute__((__always_inline__, __nodebug__, __target__("popcnt")))
-#endif
+   GCC is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3, or (at your option)
+   any later version.
 
-/// Counts the number of bits in the source operand having a value of 1.
-///
-/// \headerfile <x86intrin.h>
-///
-/// This intrinsic corresponds to the <c> POPCNT </c> instruction.
-///
-/// \param __A
-///    An unsigned 32-bit integer operand.
-/// \returns A 32-bit integer containing the number of bits with value 1 in the
-///    source operand.
-static __inline__ int __DEFAULT_FN_ATTRS
-_mm_popcnt_u32(unsigned int __A)
+   GCC is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   Under Section 7 of GPL version 3, you are granted additional
+   permissions described in the GCC Runtime Library Exception, version
+   3.1, as published by the Free Software Foundation.
+
+   You should have received a copy of the GNU General Public License and
+   a copy of the GCC Runtime Library Exception along with this program;
+   see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+   <http://www.gnu.org/licenses/>.  */
+
+#ifndef _POPCNTINTRIN_H_INCLUDED
+#define _POPCNTINTRIN_H_INCLUDED
+
+#ifndef __POPCNT__
+#pragma GCC push_options
+#pragma GCC target("popcnt")
+#define __DISABLE_POPCNT__
+#endif /* __POPCNT__ */
+
+/* Calculate a number of bits set to 1.  */
+extern __inline int __attribute__((__gnu_inline__, __always_inline__, __artificial__))
+_mm_popcnt_u32 (unsigned int __X)
 {
-  return __builtin_popcount(__A);
-}
-
-/// Counts the number of bits in the source operand having a value of 1.
-///
-/// \headerfile <x86intrin.h>
-///
-/// This intrinsic corresponds to the <c> POPCNT </c> instruction.
-///
-/// \param __A
-///    A signed 32-bit integer operand.
-/// \returns A 32-bit integer containing the number of bits with value 1 in the
-///    source operand.
-static __inline__ int __DEFAULT_FN_ATTRS
-_popcnt32(int __A)
-{
-  return __builtin_popcount(__A);
+  return __builtin_popcount (__X);
 }
 
 #ifdef __x86_64__
-/// Counts the number of bits in the source operand having a value of 1.
-///
-/// \headerfile <x86intrin.h>
-///
-/// This intrinsic corresponds to the <c> POPCNT </c> instruction.
-///
-/// \param __A
-///    An unsigned 64-bit integer operand.
-/// \returns A 64-bit integer containing the number of bits with value 1 in the
-///    source operand.
-static __inline__ long long __DEFAULT_FN_ATTRS
-_mm_popcnt_u64(unsigned long long __A)
+extern __inline long long  __attribute__((__gnu_inline__, __always_inline__, __artificial__))
+_mm_popcnt_u64 (unsigned long long __X)
 {
-  return __builtin_popcountll(__A);
+  return __builtin_popcountll (__X);
 }
+#endif
 
-/// Counts the number of bits in the source operand having a value of 1.
-///
-/// \headerfile <x86intrin.h>
-///
-/// This intrinsic corresponds to the <c> POPCNT </c> instruction.
-///
-/// \param __A
-///    A signed 64-bit integer operand.
-/// \returns A 64-bit integer containing the number of bits with value 1 in the
-///    source operand.
-static __inline__ long long __DEFAULT_FN_ATTRS
-_popcnt64(long long __A)
-{
-  return __builtin_popcountll(__A);
-}
-#endif /* __x86_64__ */
+#ifdef __DISABLE_POPCNT__
+#undef __DISABLE_POPCNT__
+#pragma GCC pop_options
+#endif  /* __DISABLE_POPCNT__ */
 
-#undef __DEFAULT_FN_ATTRS
-
-#endif /* __POPCNTINTRIN_H */
+#endif /* _POPCNTINTRIN_H_INCLUDED */

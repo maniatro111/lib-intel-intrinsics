@@ -1,75 +1,125 @@
-/*===---- immintrin.h - Intel intrinsics -----------------------------------===
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- *===-----------------------------------------------------------------------===
- */
+/* Copyright (C) 2008-2021 Free Software Foundation, Inc.
 
-#ifndef __IMMINTRIN_H
-#define __IMMINTRIN_H
+   This file is part of GCC.
 
-#if defined(__MMX__)
+   GCC is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3, or (at your option)
+   any later version.
+
+   GCC is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   Under Section 7 of GPL version 3, you are granted additional
+   permissions described in the GCC Runtime Library Exception, version
+   3.1, as published by the Free Software Foundation.
+
+   You should have received a copy of the GNU General Public License and
+   a copy of the GCC Runtime Library Exception along with this program;
+   see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+   <http://www.gnu.org/licenses/>.  */
+
+#ifndef _IMMINTRIN_H_INCLUDED
+#define _IMMINTRIN_H_INCLUDED
+
+#include <x86gprintrin.h>
+
 #include <mmintrin.h>
-#endif
 
-#if defined(__SSE__)
 #include <xmmintrin.h>
-#endif
 
-#if defined(__SSE2__)
 #include <emmintrin.h>
-#endif
 
-#if defined(__SSE3__)
 #include <pmmintrin.h>
-#endif
 
-#if defined(__SSSE3__)
 #include <tmmintrin.h>
-#endif
 
-#if \
-    (defined(__SSE4_2__) || defined(__SSE4_1__))
 #include <smmintrin.h>
-#endif
 
-#if defined(__AVX__)
+#include <wmmintrin.h>
+
 #include <avxintrin.h>
-#endif
 
-#if defined(__POPCNT__)
-#include <popcntintrin.h>
-#endif
+#include <avxvnniintrin.h>
 
+#include <avx2intrin.h>
 
-/* __bit_scan_forward */
-/*
-static __inline__ int __attribute__((__always_inline__, __nodebug__))
-_bit_scan_forward(int __A) {
-  return __builtin_ctz(__A);
-}
-*/
-/* __bit_scan_reverse */
-/*
-static __inline__ int __attribute__((__always_inline__, __nodebug__))
-_bit_scan_reverse(int __A) {
-  return 31 - __builtin_clz(__A);
-}
-*/
-#endif /* __IMMINTRIN_H */
+#include <avx512fintrin.h>
+
+#include <avx512erintrin.h>
+
+#include <avx512pfintrin.h>
+
+#include <avx512cdintrin.h>
+
+#include <avx512vlintrin.h>
+
+#include <avx512bwintrin.h>
+
+#include <avx512dqintrin.h>
+
+#include <avx512vlbwintrin.h>
+
+#include <avx512vldqintrin.h>
+
+#include <avx512ifmaintrin.h>
+
+#include <avx512ifmavlintrin.h>
+
+#include <avx512vbmiintrin.h>
+
+#include <avx512vbmivlintrin.h>
+
+#include <avx5124fmapsintrin.h>
+
+#include <avx5124vnniwintrin.h>
+
+#include <avx512vpopcntdqintrin.h>
+
+#include <avx512vbmi2intrin.h>
+
+#include <avx512vbmi2vlintrin.h>
+
+#include <avx512vnniintrin.h>
+
+#include <avx512vnnivlintrin.h>
+
+#include <avx512vpopcntdqvlintrin.h>
+
+#include <avx512bitalgintrin.h>
+
+#include <avx512vp2intersectintrin.h>
+
+#include <avx512vp2intersectvlintrin.h>
+
+#include <shaintrin.h>
+
+#include <fmaintrin.h>
+
+#include <f16cintrin.h>
+
+#include <rtmintrin.h>
+
+#include <gfniintrin.h>
+
+#include <vaesintrin.h>
+
+#include <vpclmulqdqintrin.h>
+
+#include <avx512bf16vlintrin.h>
+
+#include <avx512bf16intrin.h>
+
+#include <amxtileintrin.h>
+
+#include <amxint8intrin.h>
+
+#include <amxbf16intrin.h>
+
+#include <prfchwintrin.h>
+
+#include <keylockerintrin.h>
+
+#endif /* _IMMINTRIN_H_INCLUDED */

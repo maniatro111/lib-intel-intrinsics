@@ -22,4 +22,8 @@ config SIMD_SSE4
 config SIMD_AVX
     bool "Enable AVX support"
     default n
+
+config SIMD_AVX2
+    bool "Enable AVX2 support"
+    default n
 endif
